@@ -1,0 +1,202 @@
+<template>
+<!--    <div>-->
+<!--        <Header></Header>-->
+
+<!--    </div>-->
+    <div>
+        <Header></Header>
+
+
+
+        <!-- 幻灯片 开始 -->
+        <div v-swiper:mySwiper="swiperOption">
+            <div class="swiper-wrapper">
+                <div v-for="banner in bannerList" :key="banner.id" class="swiper-slide" style="background: #040B1B;">
+                    <a :href="banner.linkUrl" target="_blank">
+                        <img :src="banner.imageUrl" :alt="banner.title">
+                    </a>
+                </div>
+
+            </div>
+            <div class="swiper-pagination swiper-pagination-white"/>
+            <div slot="button-prev" class="swiper-button-prev swiper-button-white"/>
+            <div slot="button-next" class="swiper-button-next swiper-button-white"/>
+        </div>
+        <!-- 幻灯片 结束 -->
+
+        <div id="aCoursesList">
+            <!-- 网校课程 开始 -->
+            <div>
+                <section class="container">
+                    <header class="comm-title">
+                        <h2 class="tac">
+                            <span class="c-333">热门课程</span>
+                        </h2>
+                    </header>
+                    <div>
+                        <article class="comm-course-list">
+                            <ul id="bna" class="of">
+                                <li v-for="course in eduList" :key="course.id">
+                                    <div class="cc-l-wrap">
+                                        <section class="course-img">
+                                            <img
+                                                    :src="course.cover"
+                                                    :alt="course.title"
+                                                    class="img-responsive"
+                                            >
+                                            <div class="cc-mask">
+                                                <a href="#" title="开始学习" class="comm-btn c-btn-1">开始学习</a>
+                                            </div>
+                                        </section>
+                                        <h3 class="hLh30 txtOf mt10">
+                                            <a href="#" title="course.title" class="course-title fsize18 c-333">{{ course.title }}</a>
+                                        </h3>
+                                        <section class="mt10 hLh20 of">
+                      <span v-if="Number(course.price)===0" class="fr jgTag bg-green">
+                        <i class="c-fff fsize12 f-fA">免费</i>
+                      </span>
+                                            <span class="fl jgAttr c-ccc f-fA">
+                        <i class="c-999 f-fA">9634人学习</i>
+                        |
+                        <i class="c-999 f-fA">9634评论</i>
+                      </span>
+                                        </section>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="clear"/>
+                        </article>
+                        <section class="tac pt20">
+                            <a href="#" title="全部课程" class="comm-btn c-btn-2">全部课程</a>
+                        </section>
+                    </div>
+                </section>
+            </div>
+            <!-- /网校课程 结束 -->
+            <!-- 网校名师 开始 -->
+            <div>
+                <section class="container">
+                    <header class="comm-title">
+                        <h2 class="tac">
+                            <span class="c-333">名师大咖</span>
+                        </h2>
+                    </header>
+                    <div>
+                        <article class="i-teacher-list">
+                            <ul class="of">
+                                <li v-for="teacher in teacherList" :key="teacher.id">
+                                    <section class="i-teach-wrap">
+                                        <div class="i-teach-pic">
+                                            <a :title="teacher.name" href="/teacher/1">
+                                                <img :alt="teacher.name" :src="teacher.avatar">
+                                            </a>
+                                        </div>
+                                        <div class="mt10 hLh30 txtOf tac">
+                                            <a :title="teacher.name" href="/teacher/1" class="fsize18 c-666">{{ teacher.name }}</a>
+                                        </div>
+                                        <div class="hLh30 txtOf tac">
+                                            <span class="fsize14 c-999">{{ teacher.career }}</span>
+                                        </div>
+                                        <div class="mt15 i-q-txt">
+                                            <p
+                                                    class="c-999 f-fA"
+                                            >{{ teacher.intro }}</p>
+                                        </div>
+                                    </section>
+                                </li>
+
+                            </ul>
+                            <div class="clear"/>
+                        </article>
+                        <!--<section class="tac pt20">
+                          <a href="#" title="全部讲师" class="comm-btn c-btn-2">全部讲师</a>
+                        </section>-->
+                    </div>
+                </section>
+            </div>
+            <!-- /网校名师 结束 -->
+        </div>
+        <Footer></Footer>
+    </div>
+
+
+</template>
+<script>
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import blogs from '@/api/notes'
+
+export default {
+name: "Blogs.vue",
+components: {Header,Footer},
+data() {
+return {
+blogs: {},
+currentPage: 1,
+total: 0,
+pageSize: 5
+}
+},
+methods: {
+page(currentPage) {
+const _this = this
+_this.$axios.get("/blogs?currentPage=" + currentPage).then(res => {
+console.log(res)
+_this.blogs = res.data.data.records
+_this.currentPage = res.data.data.current
+_this.total = res.data.data.total
+_this.pageSize = res.data.data.size
+
+})
+},
+    testMeth(){
+        blogs.showAllBlogs(1);
+    }
+},
+created() {
+this.testMeth()
+}
+}
+</script>
+<!--<script>-->
+    // import banner from '@/api/banner'
+    // import index from '@/api/index'
+    // export default {
+    //     data() {
+    //         return {
+    //             swiperOption: {
+    //                 // 配置分页
+    //                 pagination: {
+    //                     el: '.swiper-pagination'// 分页的dom节点
+    //                 },
+    //                 // 配置导航
+    //                 navigation: {
+    //                     nextEl: '.swiper-button-next', // 下一页dom节点
+    //                     prevEl: '.swiper-button-prev'// 前一页dom节点
+    //                 }
+    //             },
+    //             // banner数组
+    //             bannerList: [],
+    //             eduList: [],
+    //             teacherList: []
+    //         }
+    //     }, created() {
+    //         this.getBannerList()
+    //         this.getHotCourseAndteacher()
+    //     },
+    //     methods: {
+    //         // 查询热课程和名师
+    //         getHotCourseAndteacher() {
+    //             index.getHotCourseAndTeacher().then(response => {
+    //                 this.eduList = response.data.data.eduList
+    //                 this.teacherList = response.data.data.teacherList
+    //             })
+    //         },
+    //         getBannerList() {
+    //             banner.getListBanner().then(response => {
+    //                 this.bannerList = response.data.data.list
+    //             })
+    //         }
+    //     }
+    // }
+<!--</script>-->
