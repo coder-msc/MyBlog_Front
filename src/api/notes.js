@@ -24,7 +24,7 @@ export default{
     // 所有博客列表
     showAllBlogs(currentPage) {
         return request({
-            url: '/blogservice/blogs/blogs',
+            url: `/blogservice/blogs/blogs`,
             method: 'get'
         })
     },

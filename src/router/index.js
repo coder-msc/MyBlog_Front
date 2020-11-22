@@ -5,6 +5,10 @@ import Blogs from '../views/Blogs.vue'
 import BlogEdit from '../views/BlogEdit.vue'
 import BlogDetail from '../views/BlogDetail.vue'
 import Index from '../views/index.vue'
+import Notes from '@/views/notes/list.vue'
+import Tools from '../views/tools/list.vue'
+import Wallpaper from '../views/wallpaper/list.vue'
+import Friends from '../views/friends/list.vue'
 
 Vue.use(VueRouter)
 
@@ -18,6 +22,26 @@ const routes = [
     path: '/index',
     name: 'Index',
     component: Index
+  },
+  {
+    path: '/notes',
+    name: 'Notes',
+    component: Notes
+  },
+  {
+    path: '/tools',
+    name: 'Tools',
+    component: Tools
+  },
+  {
+    path: '/wallpaper',
+    name: 'Wallpaper',
+    component: Wallpaper
+  },
+  {
+    path: '/friends',
+    name: 'Friends',
+    component: Friends
   },
   {
     path: '/blogs',

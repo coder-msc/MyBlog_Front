@@ -1,8 +1,4 @@
 <template>
-<!--    <div>-->
-<!--        <Header></Header>-->
-
-<!--    </div>-->
     <div>
         <Header></Header>
 
