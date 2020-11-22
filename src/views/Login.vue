@@ -3,7 +3,7 @@
 
     <el-container>
       <el-header>
-        <img class="mlogo" src="https://www.markerhub.com/dist/images/logo/markerhub-logo.png" alt="">
+        <img class="mlogo" src="https://edu-0110.oss-cn-beijing.aliyuncs.com/2020/07/076572ea3d1e964d01ab36e82e0766b99efile.png" alt="">
       </el-header>
       <el-main>
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
@@ -32,7 +32,7 @@
     data() {
       return {
         ruleForm: {
-          username: 'markerhub',
+          username: 'loginname',
           password: '111111'
         },
         rules: {

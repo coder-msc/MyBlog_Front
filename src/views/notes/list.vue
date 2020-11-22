@@ -8,9 +8,11 @@
         <section class="container">
             <header class="comm-title all-teacher-title">
 
-            <h2 class="fl tac">
-                    <span class="c-333">全部笔记</span>
-                </h2>
+                <header class="comm-title">
+                    <h2 class="fl tac">
+                        <span class="c-333">全部笔记</span>
+                    </h2>
+                </header>
                 <!--<section class="c-tab-title">
                   <a id="subjectAll" title="全部" href="#">全部</a>
                   &lt;!&ndash; <c:forEach var="subject" items="${subjectList }">
@@ -21,7 +23,7 @@
                     <section class="c-s-dl">
                         <dl>
                             <dt>
-                                <span class="c-999 fsize14">课程类别</span>
+                                <span class="c-999 fsize14">类别</span>
                             </dt>
                             <dd class="c-s-dl-li">
                                 <ul class="clearfix">
@@ -31,7 +33,9 @@
                                     <li v-for="(item, index) in subjectNestedList" :key="index" :class="{active:oneIndex==index}">
                                         <a :title="item.title" href="#" @click="searchOne(item.id,index)">{{ item.title }}</a>
                                     </li>
-
+                                    <li>
+                                        <a title="全部" href="#">全部</a>
+                                    </li>
                                 </ul>
                             </dd>
                         </dl>
@@ -95,18 +99,23 @@
                             <li v-for="notes in data.records" :key="notes.id">
                                 <section class="i-teach-wrap">
                                     <div class="i-teach-pic">
-                                        <a :title="notes.title" :href="'/teacher/'+notes.id" target="_blank">
+<!--                                        <a :title="notes.title" :href="'/NoteDetail/'+notes.id" target="_blank">-->
+<!--                                            <img :src="notes.blogAvatar" :alt="notes.name">-->
+<!--                                        </a>-->
+                                        <a :title="notes.title" @click="seeBlogDetail(notes.id)" target="_blank">
                                             <img :src="notes.blogAvatar" :alt="notes.name">
                                         </a>
                                     </div>
+<!--                                    <router-link :to="{name: 'BlogDetail', params: {blogId: notes.id}}">-->
+<!--                                                                           </router-link>-->
                                     <div class="mt10 hLh30 txtOf tac">
-                                        <a :title="notes.name" :href="'/teacher/'+notes.id" target="_blank" class="fsize18 c-666">{{ notes.name }}</a>
+                                        <a :title="notes.name" :href="'/BlogDetail/'+notes.id" target="_blank" class="fsize18 c-666">{{ notes.name }}</a>
                                     </div>
                                     <div class="hLh30 txtOf tac">
-                                        <span class="fsize14 c-999">{{ notes.intro }}</span>
+                                        <span class="fsize14 c-999">{{ notes.title }}</span>
                                     </div>
                                     <div class="mt15 i-q-txt">
-                                        <p class="c-999 f-fA">{{ notes.career }}</p>
+                                        <p class="c-999 f-fA">{{ notes.createdTime }}</p>
                                     </div>
                                 </section>
                             </li>
@@ -180,11 +189,11 @@
                 blogs.showAllBlogs(currentPage).then(response=>{
                     console.log("--============----"+response.data.pageData.records)
                     this.data = response.data.pageData
-
-                    // this.blogs=response.data.data.code
-                    // console.log("--============----"+blogs.blogs)
-
                 });
+            },
+            seeBlogDetail(blogId){
+                this.$router.push({ path: `/NoteDetail/${blogId}` })
+                console.log(blogId + '------------')
             }
         },
         created() {

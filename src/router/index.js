@@ -5,10 +5,13 @@ import Blogs from '../views/Blogs.vue'
 import BlogEdit from '../views/BlogEdit.vue'
 import BlogDetail from '../views/BlogDetail.vue'
 import Index from '../views/index.vue'
-import Notes from '@/views/notes/list.vue'
+import Notes from '../views/notes/list.vue'
+import NoteDetail from '../views/notes/details.vue'
+
 import Tools from '../views/tools/list.vue'
 import Wallpaper from '../views/wallpaper/list.vue'
 import Friends from '../views/friends/list.vue'
+import FriendDetail from '../views/friends/details.vue'
 
 Vue.use(VueRouter)
 
@@ -29,6 +32,11 @@ const routes = [
     component: Notes
   },
   {
+    path: '/NoteDetail/:blogId',
+    name: 'NoteDetail',
+    component: NoteDetail
+  },
+  {
     path: '/tools',
     name: 'Tools',
     component: Tools
@@ -42,6 +50,11 @@ const routes = [
     path: '/friends',
     name: 'Friends',
     component: Friends
+  },
+  {
+    path: '/FriendDetail',
+    name: 'FriendDetail',
+    component: FriendDetail
   },
   {
     path: '/blogs',

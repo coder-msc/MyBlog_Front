@@ -1,5 +1,5 @@
 <template>
-    <div id="aCoursesList" class="bg-fa of">
+    <div>
         <Header></Header>
 
         <!-- /课程列表 开始 -->
