@@ -42,6 +42,8 @@
                     </dl>
                     <div class="clear"/>
                 </section>
+
+
                 <div class="js-wrap">
                     <section class="fr">
             <span class="c-ccc">
@@ -69,78 +71,78 @@
                         </ol>
                     </section>
                 </div>
-<!--                <div class="mt40">-->
-<!--                    &lt;!&ndash; /无数据提示 开始&ndash;&gt;-->
-<!--                    <section v-if="data.total==0" class="no-data-wrap">-->
-<!--                        <em class="icon30 no-data-ico">&nbsp;</em>-->
-<!--                        <span class="c-666 fsize14 ml10 vam">没有相关数据，小编正在努力整理中...</span>-->
-<!--                    </section>-->
-<!--                    &lt;!&ndash; /无数据提示 结束&ndash;&gt;-->
-<!--                    <article v-if="data.total>0" class="comm-course-list">-->
-<!--                        <ul id="bna" class="of">-->
-<!--                            <li v-for="item in data.items" :key="item.id">-->
-<!--                                <div class="cc-l-wrap">-->
-<!--                                    <section class="course-img">-->
-<!--                                        <img :src="item.cover" :alt="item.title" class="img-responsive">-->
-<!--                                        <div class="cc-mask">-->
-<!--                                            <a :href="'/course/'+item.id" title="开始学习" class="comm-btn c-btn-1">开始学习</a>-->
-<!--                                        </div>-->
-<!--                                    </section>-->
-<!--                                    <h3 class="hLh30 txtOf mt10">-->
-<!--                                        <a :title="item.title" :href="'/course/'+item.id" class="course-title fsize18 c-333">{{ item.title }}</a>-->
-<!--                                    </h3>-->
-<!--                                    <section class="mt10 hLh20 of">-->
-<!--                    <span class="fr jgTag bg-green">-->
-<!--                      <i class="c-fff fsize12 f-fA">免费</i>-->
-<!--                    </span>-->
-<!--                                        <span class="fl jgAttr c-ccc f-fA">-->
-<!--                      <i class="c-999 f-fA">9634人学习</i>-->
-<!--                      |-->
-<!--                      <i class="c-999 f-fA">9634评论</i>-->
-<!--                    </span>-->
-<!--                                    </section>-->
-<!--                                </div>-->
-<!--                            </li>-->
+                <div class="mt40">
+                    <!-- /无数据提示 开始-->
+                    <section v-if="data.total==0" class="no-data-wrap">
+                        <em class="icon30 no-data-ico">&nbsp;</em>
+                        <span class="c-666 fsize14 ml10 vam">没有相关数据，小编正在努力整理中...</span>
+                    </section>
+                    <!-- /无数据提示 结束-->
+                    <article v-if="data.total>0" class="comm-course-list">
+                        <ul id="bna" class="of">
+                            <li v-for="item in data.items" :key="item.id">
+                                <div class="cc-l-wrap">
+                                    <section class="course-img">
+                                        <img :src="item.cover" :alt="item.title" class="img-responsive">
+                                        <div class="cc-mask">
+                                            <a :href="'/course/'+item.id" title="开始学习" class="comm-btn c-btn-1">开始学习</a>
+                                        </div>
+                                    </section>
+                                    <h3 class="hLh30 txtOf mt10">
+                                        <a :title="item.title" :href="'/course/'+item.id" class="course-title fsize18 c-333">{{ item.title }}</a>
+                                    </h3>
+                                    <section class="mt10 hLh20 of">
+                                    <span class="fr jgTag bg-green">
+                                      <i class="c-fff fsize12 f-fA">免费</i>
+                                    </span>
+                                        <span class="fl jgAttr c-ccc f-fA">
+                                      <i class="c-999 f-fA">9634人学习</i>
+                                      |
+                                      <i class="c-999 f-fA">9634评论</i>
+                                    </span>
+                                    </section>
+                                </div>
+                            </li>
 
-<!--                        </ul>-->
-<!--                        <div class="clear"/>-->
-<!--                    </article>-->
-<!--                </div>-->
-<!--                &lt;!&ndash; 公共分页 开始 &ndash;&gt;-->
-<!--                <div>-->
-<!--                    <div class="paging">-->
-<!--                        &lt;!&ndash; undisable这个class是否存在，取决于数据属性hasPrevious &ndash;&gt;-->
-<!--                        <a-->
-<!--                                :class="{undisable: !data.hasPrevious}"-->
-<!--                                href="#"-->
-<!--                                title="首页"-->
-<!--                                @click.prevent="gotoPage(1)">首</a>-->
-<!--                        <a-->
-<!--                                :class="{undisable: !data.hasPrevious}"-->
-<!--                                href="#"-->
-<!--                                title="前一页"-->
-<!--                                @click.prevent="gotoPage(data.current-1)">&lt;</a>-->
-<!--                        <a-->
-<!--                                v-for="page in data.pages"-->
-<!--                                :key="page"-->
-<!--                                :class="{current: data.current == page, undisable: data.current == page}"-->
-<!--                                :title="'第'+page+'页'"-->
-<!--                                href="#"-->
-<!--                                @click.prevent="gotoPage(page)">{{ page }}</a>-->
-<!--                        <a-->
-<!--                                :class="{undisable: !data.hasNext}"-->
-<!--                                href="#"-->
-<!--                                title="后一页"-->
-<!--                                @click.prevent="gotoPage(data.current+1)">&gt;</a>-->
-<!--                        <a-->
-<!--                                :class="{undisable: !data.hasNext}"-->
-<!--                                href="#"-->
-<!--                                title="末页"-->
-<!--                                @click.prevent="gotoPage(data.pages)">末</a>-->
-<!--                        <div class="clear"/>-->
-<!--                    </div>-->
-<!--                </div>-->
-                <!-- 公共分页 结束 -->
+                        </ul>
+                        <div class="clear"/>
+                    </article>
+                </div>
+                <!-- 公共分页 开始 -->
+                <div>
+                    <div class="paging">
+                        <!-- undisable这个class是否存在，取决于数据属性hasPrevious -->
+                        <a
+                                :class="{undisable: !data.hasPrevious}"
+                                href="#"
+                                title="首页"
+                                @click.prevent="gotoPage(1)">首</a>
+                        <a
+                                :class="{undisable: !data.hasPrevious}"
+                                href="#"
+                                title="前一页"
+                                @click.prevent="gotoPage(data.current-1)">&lt;</a>
+                        <a
+                                v-for="page in data.pages"
+                                :key="page"
+                                :class="{current: data.current == page, undisable: data.current == page}"
+                                :title="'第'+page+'页'"
+                                href="#"
+                                @click.prevent="gotoPage(page)">{{ page }}</a>
+                        <a
+                                :class="{undisable: !data.hasNext}"
+                                href="#"
+                                title="后一页"
+                                @click.prevent="gotoPage(data.current+1)">&gt;</a>
+                        <a
+                                :class="{undisable: !data.hasNext}"
+                                href="#"
+                                title="末页"
+                                @click.prevent="gotoPage(data.pages)">末</a>
+                        <div class="clear"/>
+                    </div>
+                </div>
+                公共分页 结束
             </section>
         </section>
         <Footer></Footer>
@@ -159,7 +161,19 @@
                 blogs: {},
                 currentPage: 1,
                 total: 0,
-                pageSize: 5
+                pageSize: 5,
+                page: 1, // 当前页
+                data: {}, // 课程列表
+                subjectNestedList: [], // 一级分类列表
+                subSubjectList: [], // 二级分类列表
+
+                searchObj: {}, // 查询表单对象
+
+                oneIndex: -1,
+                twoIndex: -1,
+                buyCountSort: '',
+                gmtCreateSort: '',
+                priceSort: ''
             }
         },
         methods: {

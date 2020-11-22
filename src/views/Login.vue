@@ -1,128 +1,95 @@
 <template>
   <div>
+    <Header></Header>
 
-    <el-container>
-      <el-header>
-        <img class="mlogo" src="https://edu-0110.oss-cn-beijing.aliyuncs.com/2020/07/076572ea3d1e964d01ab36e82e0766b99efile.png" alt="">
-      </el-header>
-      <el-main>
-        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-          <el-form-item label="用户名" prop="username">
-            <el-input v-model="ruleForm.username"></el-input>
-          </el-form-item>
-          <el-form-item label="密码" prop="password">
-            <el-input type="password" v-model="ruleForm.password"></el-input>
-          </el-form-item>
+    <div class="title">
+      <a class="active" href="/login">登录</a>
+      <span>·</span>
+      <a href="/register">注册</a>
+    </div>
 
-          <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
-            <el-button @click="resetForm('ruleForm')">重置</el-button>
-          </el-form-item>
-        </el-form>
+    <div class="sign-up-container">
+      <el-form ref="userForm" :model="user">
 
-      </el-main>
-    </el-container>
+        <el-form-item :rules="[{ required: true, message: '请输入手机号码', trigger: 'blur' },{validator: checkPhone, trigger: 'blur'}]" class="input-prepend restyle" prop="mobile">
+          <div >
+            <el-input v-model="user.mobile" type="text" placeholder="手机号"/>
+            <i class="iconfont icon-phone" />
+          </div>
+        </el-form-item>
+
+        <el-form-item :rules="[{ required: true, message: '请输入密码', trigger: 'blur' }]" class="input-prepend" prop="password">
+          <div>
+            <el-input v-model="user.password" type="password" placeholder="密码"/>
+            <i class="iconfont icon-password"/>
+          </div>
+        </el-form-item>
+
+        <div class="btn">
+          <input type="button" class="sign-in-button" value="登录" @click="submitLogin()">
+        </div>
+      </el-form>
+      <!-- 更多登录方式 -->
+      <div class="more-sign">
+        <h6>社交帐号登录</h6>
+        <ul>
+          <li><a id="weixin" class="weixin" target="_blank" href="http://qy.free.idcfengye.com/api/ucenter/weixinLogin/login"><i class="iconfont icon-weixin"/></a></li>
+          <li><a id="qq" class="qq" target="_blank" href="#"><i class="iconfont icon-qq"/></a></li>
+        </ul>
+      </div>
+    </div>
+    <Footer></Footer>
 
   </div>
 </template>
 
 <script>
+  import '@/assets/css/sign.css'
+  import '@/assets/css/iconfont.css'
+  import Header from "@/components/Header";
+  import Footer from "@/components/Footer";
+  // import loginApi from '@/api/login'
+  // import cookie from 'js-cookie'
+
   export default {
-    name: "Login",
+    layout: 'sign',
+    components: {Header,Footer},
     data() {
       return {
-        ruleForm: {
-          username: 'loginname',
-          password: '111111'
+        user: {
+          mobile: '',
+          password: ''
         },
-        rules: {
-          username: [
-            { required: true, message: '请输入用户名', trigger: 'blur' },
-            { min: 3, max: 15, message: '长度在 3 到 15 个字符', trigger: 'blur' }
-          ],
-          password: [
-            { required: true, message: '请选择密码', trigger: 'change' }
-          ]
-        }
-      };
+        loginInfo: {}
+      }
     },
+
     methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            const _this = this
-            this.$axios.post('/login', this.ruleForm).then(res => {
-
-              console.log(res.data)
-              const jwt = res.headers['authorization']
-              const userInfo = res.data.data
-
-              // 把数据共享出去
-              _this.$store.commit("SET_TOKEN", jwt)
-              _this.$store.commit("SET_USERINFO", userInfo)
-
-              // 获取
-              console.log(_this.$store.getters.getUser)
-
-              _this.$router.push("/blogs")
-            })
-
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
-        });
-      },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
+      // submitLogin() {
+      //   loginApi.submitLogin(this.user).then(response => {
+      //     // 将token放cookie中
+      //     cookie.set('guli_token', response.data.data.token, { domain: 'localhost' })
+      //     loginApi.getUserinfoBytoken().then(response => {
+      //       // 将userInfo放cookie中
+      //       this.loginInfo = response.data.data.userInfo
+      //       cookie.set('guli_ucenter', this.loginInfo, { domain: 'localhost' })
+      //       // 跳转至首页
+      //       window.location.href = '/'
+      //     })
+      //   })
+      // },
+      checkPhone(rule, value, callback) {
+        // debugger
+        if (!(/^1[34578]\d{9}$/.test(value))) {
+          return callback(new Error('手机号码格式不正确'))
+        }
+        return callback()
       }
     }
   }
 </script>
-
-<style scoped>
-  .el-header, .el-footer {
-    background-color: #B3C0D1;
-    color: #333;
-    text-align: center;
-    line-height: 60px;
+<style>
+  .el-form-item__error{
+    z-index: 9999999;
   }
-
-  .el-aside {
-    background-color: #D3DCE6;
-    color: #333;
-    text-align: center;
-    line-height: 200px;
-  }
-
-  .el-main {
-    /*background-color: #E9EEF3;*/
-    color: #333;
-    text-align: center;
-    line-height: 160px;
-  }
-
-  body > .el-container {
-    margin-bottom: 40px;
-  }
-
-  .el-container:nth-child(5) .el-aside,
-  .el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-  }
-
-  .el-container:nth-child(7) .el-aside {
-    line-height: 320px;
-  }
-
-  .mlogo {
-    height: 60%;
-    margin-top: 10px;
-  }
-
-  .demo-ruleForm {
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
 </style>

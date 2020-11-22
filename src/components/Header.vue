@@ -62,7 +62,7 @@
                     <aside class="h-r-search">
                         <form action="#" method="post">
                             <label class="h-r-s-box">
-                                <input type="text" placeholder="输入你想学的课程" name="queryCourse.courseName" value>
+                                <input type="text" placeholder="这里搜索。。。" name="queryCourse.courseName" value>
                                 <button type="submit" class="s-btn">
                                     <em class="icon18">&nbsp;</em>
                                 </button>
