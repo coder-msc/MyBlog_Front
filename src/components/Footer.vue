@@ -18,8 +18,8 @@
                     <a href="#" title="联系我们" target="_blank">联系我们</a>|
                     <a href="#" title="资源下载" target="_blank">资源下载</a>
                     <br>
-                    <span>服务热线：qq:59968873</span>
-                    <span>Email：59968873@qq.com</span>
+                    <span>服务热线：qq:1771947201</span>
+                    <span>Email：1771947201@qq.com</span>
                 </section>
                 <section class="b-f-link mt10">
                     <span>©2020 此网站拥有者为个人.  京ICP备17055252号</span>
