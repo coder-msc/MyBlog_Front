@@ -6,7 +6,7 @@
             </h4>
             <ul class="of flink-list">
                 <li>
-                    <a href="http://www.atguigu.com/" title="尚硅谷" target="_blank">尚硅谷</a>
+                    <a href="#" title="尚硅谷" target="_blank">尚硅谷</a>
                 </li>
             </ul>
             <div class="clear"/>
