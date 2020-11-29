@@ -187,5 +187,12 @@ https://tool.lu/favicon/
 package.json的name 属性 修改为自己取的名称即可
 
 ```$xslt
-
+{
+  "name": "cilicili",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
 ```
