@@ -95,7 +95,7 @@
 <!--                    </section>-->
                     <!-- /无数据提示 结束-->
 <!--                    <article v-if="data.total==0" class="i-teacher-list">-->
-                        <article v-if="data.total==0" class="i-teacher-list">
+                        <article v-if="data.total!=0" class="i-teacher-list">
 
                         <ul class="of">
                             <li v-for="notes in data.records" :key="notes.id">
@@ -126,7 +126,6 @@
                         <div class="clear"/>
                     </article>
                 </div>
-<!--                 公共分页 开始 -->
 <!--                 公共分页 开始 -->
                 <div>
                     <div class="paging">
@@ -180,18 +179,27 @@
         data() {
             return {
                 blogs: {},
-                currentPage: 1,
-                total: 0,
+                // currentPage: 1,
+                page: 1, // 当前页
+                limit: 8, // 每页显示的数量
+                total: 0, // 总记录数
                 pageSize: 5,
                 data:{}
             }
         },
         methods: {
-            showAllNotes(currentPage){
-                blogs.showAllBlogs(currentPage).then(response=>{
+            showAllNotes(page){
+                blogs.showAllBlogs(page).then(response=>{
                     console.log("--============----"+response.data.pageData.records)
                     this.data = response.data.pageData
                 });
+            },
+            // 分页切换效果
+            gotoPage(page) {
+                // this.data={};
+                blogs.showAllBlogs(page).then(response => {
+                    this.data = response.data.pageData
+                })
             },
             seeBlogDetail(blogId){
                 this.$router.push({ path: `/NoteDetail/${blogId}` })
@@ -212,13 +220,13 @@
     //             return { data: response.data.data }
     //         })
     //     },
-    //     methods: {
-    //         // 分页切换效果
-    //         gotoPage(page) {
-    //             teacherApi.getTeacherFront(page, 8).then(response => {
-    //                 this.data = response.data.data
-    //             })
-    //         }
-    //     }
+        methods: {
+            // // 分页切换效果
+            // gotoPage(page) {
+            //     teacherApi.getTeacherFront(page, 8).then(response => {
+            //         this.data = response.data.data
+            //     })
+            // }
+        }
     // }
 </script>
